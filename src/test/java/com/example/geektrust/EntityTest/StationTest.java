@@ -1,8 +1,8 @@
 package com.example.geektrust.EntityTest;
 
 import com.example.geektrust.Entity.MetroCard;
-import com.example.geektrust.Enums.PassengerType;
-import com.example.geektrust.Enums.Station;
+import com.example.geektrust.Entity.PassengerType;
+import com.example.geektrust.Entity.Station;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

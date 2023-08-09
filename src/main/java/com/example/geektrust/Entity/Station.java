@@ -1,7 +1,4 @@
-package com.example.geektrust.Enums;
-
-import com.example.geektrust.Entity.MetroCard;
-import com.example.geektrust.Enums.PassengerType;
+package com.example.geektrust.Entity;
 
 import java.util.*;
 import static com.example.geektrust.Constants.constants.*;
@@ -9,12 +6,10 @@ import static com.example.geektrust.Constants.constants.*;
 public enum Station {
     CENTRAL, AIRPORT;
 
+    private final Map<PassengerType, Integer> passengerTypeIntegerMap = new HashMap<>();
     private double totalMoneyCollected = ZERO;
     private double totalDiscountGiven = ZERO;
     private double taxCollected = ZERO;
-
-    private final Map<PassengerType, Integer> passengerTypeIntegerMap = new HashMap<>();
-
 
     private static final double TAX_PERCENTAGE = TAX_PERCENT;
 

@@ -1,4 +1,4 @@
-package com.example.geektrust.Enums;
+package com.example.geektrust.Entity;
 
 public enum PassengerType {
 

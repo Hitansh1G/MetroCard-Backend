@@ -1,7 +1,7 @@
 package com.example.geektrust.Services;
 
-import com.example.geektrust.Enums.PassengerType;
-import com.example.geektrust.Enums.Station;
+import com.example.geektrust.Entity.PassengerType;
+import com.example.geektrust.Entity.Station;
 
 public interface IMetroCardService {
     void createMetroCard(String name, Double balance);
