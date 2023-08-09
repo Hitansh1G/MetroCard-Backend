@@ -36,11 +36,11 @@ public class MetroCardService implements IMetroCardService {
     @Override
     public void checkIn(String metroCardId, PassengerType passengerType, Station station) {
         if (metroCardMap.containsKey(metroCardId)) {
-            processCheckIn(metroCardMap.get(metroCardId), passengerType, station);
+            checkInProcess(metroCardMap.get(metroCardId), passengerType, station);
         }
     }
 
-    private void processCheckIn(MetroCard metroCard, PassengerType passengerType, Station station) {
+    private void checkInProcess(MetroCard metroCard, PassengerType passengerType, Station station) {
         Pair<Double, Double> travelChargeAndDiscount = getEffectiveChargeForTravel(metroCard, passengerType, station);
         double rechargedAmount = metroCard.checkIfEligibleForTravel(travelChargeAndDiscount.getKey())
                 ? 0
