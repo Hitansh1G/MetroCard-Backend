@@ -30,26 +30,4 @@ public class MetroCardTest {
 
         assertTrue(eligible);
     }
-
-//    @Test
-//    public void testIsEligibleForDiscount() {
-//        Station fromStation = new Station("A");
-//        Station lastStation = new Station("B");
-//
-//        MetroCard metroCard = new MetroCard("123456", 50.0);
-//        metroCard.setLastStation(Optional.of(lastStation));
-//
-//        assertTrue(metroCard.isEligibleForDiscount(fromStation));
-//    }
-//
-//    @Test
-//    public void testCheckIn() {
-//        Station station = new Station("A");
-//
-//        MetroCard metroCard = new MetroCard("123456", 50.0);
-//        double amount = 30.0;
-//        metroCard.checkIn(amount, station);
-//
-//        assertEquals(20.0, metroCard.getBalance(), 0.001);
-//    }
 }

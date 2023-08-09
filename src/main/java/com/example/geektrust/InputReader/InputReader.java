@@ -1,4 +1,4 @@
-package com.example.geektrust.Services;
+package com.example.geektrust.InputReader;
 
 import com.example.geektrust.Command.Command;
 
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static com.example.geektrust.Constants.constants.BLANK_SPACE;
 
-public class InputParser {
+public class InputReader {
     public void processInput(String inputFile) {
         try {
             final BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile));

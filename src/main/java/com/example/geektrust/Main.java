@@ -1,6 +1,6 @@
 package com.example.geektrust;
 
-import com.example.geektrust.Services.InputParser;
+import com.example.geektrust.InputReader.InputReader;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +18,6 @@ public class Main {
         } catch (IOException e) {
         }
         */
-        new InputParser().processInput(args[0]);
+        new InputReader().processInput(args[0]);
     }
 }

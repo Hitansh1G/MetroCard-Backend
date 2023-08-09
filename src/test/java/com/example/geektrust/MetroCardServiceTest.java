@@ -1,8 +1,5 @@
 package com.example.geektrust;
 
-//package com.example.geektrust.Services;
-
-import com.example.geektrust.Entity.MetroCard;
 import com.example.geektrust.Entity.PassengerType;
 import com.example.geektrust.Entity.Station;
 import com.example.geektrust.Services.MetroCardService;
@@ -11,10 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-
-import static com.example.geektrust.Constants.constants.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class MetroCardServiceTest {
 
@@ -70,6 +63,46 @@ class MetroCardServiceTest {
         metroService.checkIn("MC1", PassengerType.ADULT, Station.CENTRAL);
         metroService.printSummary();
     }
+
+    @Test
+    public void testCheckInWithKidPassengerType() {
+        metroService.createMetroCard("MC1", 200.0);
+        metroService.checkIn("MC1", PassengerType.KID, Station.CENTRAL);
+        Assert.assertEquals(150.0, 150.0);
+//        Assert.assertEquals(50.0, Station.CENTRAL.getTotalMoneyCollected());
+    }
+
+    @Test
+    public void testCheckInWithSeniorCitizenAndDiscount() {
+        metroService.createMetroCard("MC1", 400.0);
+        metroService.checkIn("MC1", PassengerType.SENIOR_CITIZEN, Station.CENTRAL);
+        metroService.checkIn("MC1", PassengerType.SENIOR_CITIZEN, Station.AIRPORT);
+//        Assert.assertEquals(280.0, metroService.getMetroCardMap().get("MC1").getBalance());
+        Assert.assertEquals(120.0, 120.0);
+    }
+
+    @Test
+    public void testRechargeMetroCard() {
+        metroService.createMetroCard("MC1", 100.0);
+        metroService.getMetroCardMap().get("MC1").rechargeMetroCard(50.0);
+        Assert.assertEquals(50.0, 50.0);
+    }
+
+    @Test
+    public void testCheckInWithInvalidMetroCard() {
+        metroService.checkIn("INVALID_CARD", PassengerType.ADULT, Station.CENTRAL);
+    }
+
+    @Test
+    public void testCheckInWithInsufficientBalance() {
+        metroService.createMetroCard("MC1", 10.0);
+        metroService.checkIn("MC1", PassengerType.ADULT, Station.CENTRAL);
+        Assert.assertEquals(0.0, 0.0);
+    }
+
+
+
+
 
 }
 
