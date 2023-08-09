@@ -1,7 +1,7 @@
 package com.example.geektrust;
 
-import com.example.geektrust.Entity.PassengerType;
-import com.example.geektrust.Entity.Station;
+import com.example.geektrust.Enums.PassengerType;
+import com.example.geektrust.Enums.Station;
 import com.example.geektrust.Services.MetroCardService;
 import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeEach;

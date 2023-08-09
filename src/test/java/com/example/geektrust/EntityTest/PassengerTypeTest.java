@@ -2,7 +2,7 @@ package com.example.geektrust.EntityTest;
 
 //package com.example.geektrust.Entity;
 
-import com.example.geektrust.Entity.PassengerType;
+import com.example.geektrust.Enums.PassengerType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,10 +1,11 @@
 package com.example.geektrust.Services;
 
 import com.example.geektrust.Entity.MetroCard;
-import com.example.geektrust.Entity.PassengerType;
-import com.example.geektrust.Entity.Station;
+import com.example.geektrust.Enums.PassengerType;
+import com.example.geektrust.Enums.Station;
 import org.apache.commons.lang3.tuple.Pair;
-import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +31,6 @@ public class MetroCardService implements IMetroCardService {
     public void createMetroCard(String metroCardId, Double balance) {
         MetroCard metroCard = new MetroCard(metroCardId, balance);
         metroCardMap.putIfAbsent(metroCardId, metroCard);
-        metroCardMap.get(metroCardId);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MetroCardService implements IMetroCardService {
     }
 
     private void checkInProcess(MetroCard metroCard, PassengerType passengerType, Station station) {
-        Pair<Double, Double> travelChargeAndDiscount = getCharge(metroCard, passengerType, station);
+        Pair<Double, Double> travelChargeAndDiscount = calculateChargesAndDiscount(metroCard, passengerType, station);
         double rechargedAmount = metroCard.checkIfEligibleForTravel(travelChargeAndDiscount.getKey())
                 ? 0
                 : metroCard.rechargeMetroCard(travelChargeAndDiscount.getKey());
@@ -50,19 +50,27 @@ public class MetroCardService implements IMetroCardService {
         station.collectExpenseAtTheStation(rechargedAmount, travelChargeAndDiscount.getKey(), travelChargeAndDiscount.getValue());
     }
 
-    private Pair<Double, Double> getCharge(MetroCard metroCard, PassengerType passengerType, Station station) {
+    private @NotNull Pair<Double, Double> calculateChargesAndDiscount(MetroCard metroCard, PassengerType passengerType, Station station) {
         double charges = TRIP_CHARGES.get(passengerType);
         double discountApplied = 0;
 
-        if (metroCard.isEligibleForDiscount(station)) {
+        if (shouldApplyDiscount(metroCard, station)) {
             discountApplied = (DISCOUNT_PERCENTAGE * charges);
             charges -= discountApplied;
         }
         return Pair.of(charges, discountApplied);
     }
 
+    private boolean shouldApplyDiscount(@org.jetbrains.annotations.NotNull MetroCard metroCard, Station station) {
+        return metroCard.getLastStation()
+                .map(lastStation -> !lastStation.equals(station))
+                .orElse(false);
+    }
+
     @Override
     public void printSummary() {
-        Arrays.stream(Station.values()).forEach(Station::printStationSummary);
+        for (Station station : Station.values()) {
+            station.printStationSummary();
+        }
     }
 }

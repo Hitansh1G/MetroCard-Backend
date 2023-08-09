@@ -1,7 +1,7 @@
 package com.example.geektrust.Command;
 
-import com.example.geektrust.Entity.PassengerType;
-import com.example.geektrust.Entity.Station;
+import com.example.geektrust.Enums.PassengerType;
+import com.example.geektrust.Enums.Station;
 import com.example.geektrust.Services.IMetroCardService;
 import com.example.geektrust.Services.MetroCardService;
 

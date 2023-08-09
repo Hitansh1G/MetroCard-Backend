@@ -1,5 +1,7 @@
 package com.example.geektrust.Entity;
 
+import com.example.geektrust.Enums.Station;
+
 import java.util.Optional;
 
 public class MetroCard {
