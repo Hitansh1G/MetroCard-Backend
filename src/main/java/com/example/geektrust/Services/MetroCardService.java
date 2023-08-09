@@ -41,7 +41,7 @@ public class MetroCardService implements IMetroCardService {
     }
 
     private void checkInProcess(MetroCard metroCard, PassengerType passengerType, Station station) {
-        Pair<Double, Double> travelChargeAndDiscount = getEffectiveChargeForTravel(metroCard, passengerType, station);
+        Pair<Double, Double> travelChargeAndDiscount = getCharge(metroCard, passengerType, station);
         double rechargedAmount = metroCard.checkIfEligibleForTravel(travelChargeAndDiscount.getKey())
                 ? 0
                 : metroCard.rechargeMetroCard(travelChargeAndDiscount.getKey());
@@ -50,7 +50,7 @@ public class MetroCardService implements IMetroCardService {
         station.collectExpenseAtTheStation(rechargedAmount, travelChargeAndDiscount.getKey(), travelChargeAndDiscount.getValue());
     }
 
-    private Pair<Double, Double> getEffectiveChargeForTravel(MetroCard metroCard, PassengerType passengerType, Station station) {
+    private Pair<Double, Double> getCharge(MetroCard metroCard, PassengerType passengerType, Station station) {
         double charges = TRIP_CHARGES.get(passengerType);
         double discountApplied = 0;
 
